@@ -19,7 +19,7 @@ const FileUtil = {
     let basename = path.basename(defaultRomPath, ".nes");
     let defaultRomDistPath = path.join(userRoot, ".anes", "local", `${basename}.nes`);
 
-    this.copySync(defaultRomPath, defaultRomDistPath);
+    fs.cpSync(defaultRomPath, defaultRomDistPath);
     this.writeMetaInfo(userRoot, [
       {
         label: basename,
@@ -38,7 +38,7 @@ const FileUtil = {
     //防止文件信息后缀不对
     let fileName = path.basename(srcPath, ".nes");
     let distPath = path.join(userRoot, ".anes", "local", `${fileName}.nes`);
-    this.copySync(srcPath, distPath);
+    fs.cpSync(srcPath, distPath);
     let romConfigList = this.getRomConfigFileList(userRoot);
     romConfigList = romConfigList ? romConfigList : [];
     let exist = false;
@@ -71,12 +71,7 @@ const FileUtil = {
   },
   getExtensionFileAbsolutePath: function (context, relativePath) {
     return path.join(context.extensionPath, relativePath);
-  },
-
-  copySync: function (srcPath, distPath) {
-    let data = fs.readFileSync(srcPath);
-    fs.writeFileSync(distPath, data);
-  },
+  }
 };
 
 module.exports = FileUtil;
