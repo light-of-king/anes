@@ -37,7 +37,10 @@ class RomRemoteTree {
         if(remoteRomConfig && remoteRomConfig.length >0){
             let remoteRomList = [];
             remoteRomConfig.forEach((config)=>{
-                let meta = remoteMetaMap[config.name] ? remoteMetaMap[config.name]  : {}
+                let meta = remoteMetaMap[config.name] || {}
+                if (FileUtil.pathExists(path.join(this.userRoot, '.anes','local',config.nesName))){
+                  meta.downloadStatus = 2
+                }
                 remoteRomList.push(new DataItem({
                     label:config.name,
                     url:config.url,
@@ -61,7 +64,7 @@ class DataItem extends vscode.TreeItem{
         downloadStatus = downloadStatus ? downloadStatus : 0; // download 0 downloading 1 downloaded 2
         console.log(`downloadStatus:${downloadStatus}`);
         this.downloadStatus = downloadStatus;
-        this.iconPath = path.join(__filename,'..','resources', `d0.svg`);
+        this.iconPath = path.join(__filename,'..','resources', `d${downloadStatus}.svg`);
         this.children = children;
         this.command = command;
         this.url = url;

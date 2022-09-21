@@ -4,11 +4,11 @@
   "description": "vscode 小霸王",
   "publisher": "gamedilong",
   "version": "0.0.2",
-  "repository":"https://github.com/gamedilong/anes-repository",
+  "repository": "https://github.com/gamedilong/anes-repository",
   "engines": {
     "vscode": "^1.47.0"
   },
-  "icon":"logo.png",
+  "icon": "logo.png",
   "categories": [
     "Other"
   ],
@@ -111,7 +111,7 @@
   },
   "dependencies": {
     "compressing": "^1.5.1",
-    "jsnes": "git://github.com/bfirsh/jsnes.git",
+    "jsnes": "https://github.com/bfirsh/jsnes.git",
     "request": "^2.88.2",
     "unzip": "^0.1.11"
   },
